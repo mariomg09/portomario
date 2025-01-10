@@ -32,7 +32,7 @@ const experiences = [
       { name: "ptt" },
       { name: "React.js" },
     ],
-    image: "/ime.jpg",
+    image: "/Experience/IME.jpg",
   },
   {
     num: "02",
@@ -45,7 +45,7 @@ const experiences = [
       { name: "Teamwork" },
       { name: "Communication" },
     ],
-    image: "/Experience/ime.jpg",
+    image: "/Experience/IME.jpg",
   },
   {
     num: "03",
@@ -58,7 +58,7 @@ const experiences = [
       { name: "Teamwork" },
       { name: "Communication" },
     ],
-    image: "/ime.jpg",
+    image: "/Experience/MADK.JPG",
   },
 ];
 const Experience = () => {
