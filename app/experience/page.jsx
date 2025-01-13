@@ -1,161 +1,164 @@
 "use client";
+import React, { useState, useRef } from "react";
+import Card from "./card";
+import Tag from "./tag";
+import { motion, useInView } from "framer-motion";
 
-import { motion } from "framer-motion";
-import React, { useState } from "react";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-
-import { BsArrowUpRight, BsGithub } from "react-icons/bs";
-
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
-import Link from "next/link";
-import Image from "next/image";
-import { handleClientScriptLoad } from "next/script";
-import WorkSliderBtns from "@/components/WorkSliderBtns";
-
-const experiences = [
+const experiencesData = [
   {
-    num: "01",
-    category: "Software Engineer at TSM Technology",
-    title: "Internship",
-    description: "Magang lah pokoknya",
-    stack: [
-      { name: "Next.js" },
-      { name: "Golang" },
-      { name: "ptt" },
-      { name: "React.js" },
+    id: 1,
+    title: "Tata Sarana Mandiri Technology (TSM Technology)",
+    positions: [
+      {
+        description: "Software Engineer Internship",
+        time: "Jan 2025 - Feb 2025",
+      },
     ],
-    image: "/Experience/IME.jpg",
+    image: "/Experience/tsm.jpg",
+    tag: ["All", "Professional"],
+    gitUrl: "/",
+    previewUrl: "/",
   },
   {
-    num: "02",
-    category: "President of IME FTUI 2024",
-    title: "Organization",
-    description:
-      "I led 61 Executive Board and Expert Staff members, along with 147 staff, to support and advance the students of the Department of Electrical Engineering. Under my guidance, the department won 1st place at Teknik Cup 2024, Olimpiade Ilmiah Mahasiswa FTUI 2024, and Pesta Rakyat FTUI 2024. I also executed 65 programs focused on academic advocacy, facilities improvement, talent development, and strengthening core competencies within a year.",
-    stack: [
-      { name: "Leadership" },
-      { name: "Teamwork" },
-      { name: "Communication" },
+    id: 2,
+    title: "Ikatan Mahasiswa Elektro FTUI 2024",
+    positions: [
+      {
+        description: "President",
+        time: "Jan 2024 - Dec 2024",
+      },
+      {
+        description: "Staff of Communication and Information",
+        time: "Jan 2023 - Dec 2023",
+      },
     ],
-    image: "/Experience/IME.jpg",
+    image: "/Experience/ime.jpg",
+    tag: ["All", "Organizational"],
+    gitUrl: "/",
+    previewUrl: "/",
   },
   {
-    num: "03",
-    category: "SC MADK DTE FTUI 2024",
-    title: "Organization",
-    description:
-      "I was responsible for acting as the liaison and coordinating between MADK DTE and MADK Pusat (FT). In this role, I led over 110 staff members, working closely with the project officer to develop course syllabi, prepare operational plans, and oversee the execution of the event on the day. This involved managing resources, ensuring smooth communication between teams, and ensuring that all aspects of the event were well-organized and executed according to plan.",
-    stack: [
-      { name: "Leadership" },
-      { name: "Teamwork" },
-      { name: "Communication" },
+    id: 3,
+    title: "MADK DTE FTUI 2024",
+    positions: [
+      {
+        description: "Steering Committee",
+        time: "Feb 2024 - Aug 2024",
+      },
     ],
     image: "/Experience/MADK.JPG",
+    tag: ["All", "Organizational"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 4,
+    title: "Badan Eksekutif Mahasiswa FTUI 2023",
+    positions: [
+      {
+        description: "Staff of Science and Technology",
+        time: "Feb 2023 - Dec 2025",
+      },
+    ],
+    image: "/Experience/bem.jpg",
+    tag: ["All", "Organizational"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 5,
+    title: "Arjuna IPTEK 2023",
+    positions: [
+      {
+        description: "Project Officer",
+        time: "Apr 2023 - Dec 2023",
+      },
+    ],
+    image: "/Experience/arjuna.jpg",
+    tag: ["All", "Organizational"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 6,
+    title: "Class Representative Assembly SMAN 2 Jakarta",
+    positions: [
+      {
+        description: "President",
+        time: "Aug 2020 - Aug 2021",
+      },
+    ],
+    image: "/Experience/mpk.jpg",
+    tag: ["All", "Organizational"],
+    gitUrl: "/",
+    previewUrl: "/",
   },
 ];
+
 const Experience = () => {
-  const [experience, setExperience] = useState(experiences[0]);
+  const [tag, setTag] = useState("All");
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
-  const handleSlideChange = (swiper) => {
-    const currentIndex = swiper.activeIndex;
-
-    setExperience(experiences[currentIndex]);
+  const handleTagChange = (newTag) => {
+    setTag(newTag);
   };
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 0.5, duration: 0.7, ease: "easeIn" },
-      }}
-      className="min-h-[80vh] flex flex-col items-center justify-center py-12 xl:px-0"
-    >
-      <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-          <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
-            <div>
-              {/*outline num*/}
-              <div className="text-8xl leading-none font-extrabold text-outline mb-1">
-                {experience.num}
-              </div>
-              {/*experience category*/}
-              <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-blue-400 transition-all duration-500 capitalize mb-4">
-                {experience.category}
-              </h2>
-              {/*experience description*/}
-              <p className="text-lg text-white/60 mb-4">{experience.description}</p>
-              {/*stack*/}
-              <ul className="flex gap-4">
-                {experience.stack.map((item, index) => {
-                  return (
-                    <li key={index} className="text-xl text-blue-400">
-                      {item.name}
-                      {index !== experience.stack.length - 1 && ","}
-                    </li>
-                  );
-                })}
-              </ul>
-              {/*Border*/}
-              <div className="border border-white/20 "></div>
-              {/*buttons*/}
-              <div>
-                {/*<Link>
-                  <TooltipProvider>
-                    <Tooltip>
-                    
-                        </Tooltip>
 
-                  </TooltipProvider>
-                </Link>*/}
-              </div>
-            </div>
-          </div>
-          <div className="w-full xl:w-[50%]">
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={1}
-              className="xl:h-[520px] mb-12"
-              onSlideChange={handleSlideChange}
-            >
-              {experiences.map((experience, index) => {
-                return (
-                  <SwiperSlide key={index} className="w-full">
-                    <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
-                      {/*overlay*/}
-                      <div>
-                        <div className="absolute top-0 left-0 w-full h-full bg-black/10 z-10"></div>
-                      </div>
-                      {/*image*/}
-                      <div>
-                        <Image
-                          src={experience.image}
-                          fill
-                          alt=""
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-              {/*slider buttons*/}
-              <WorkSliderBtns
-                containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_20px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
-                btnStyles="bg-blue-400 hover:bg-blue-400-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all opacity-80"
-              />
-            </Swiper>
-          </div>
-        </div>
+  const filteredExperiences = experiencesData.filter((experience) =>
+    experience.tag.includes(tag)
+  );
+
+  const cardVariants = {
+    initial: { y: 50, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+  };
+
+  return (
+    <section id="experiences">
+      <h2 className="text-center text-4xl font-bold text-blue-400 mt-4 mb-8 md:mb-12">
+        My Experiences
+      </h2>
+      <div className="text-blue-400 flex flex-row justify-center items-center gap-2 py-6">
+        <Tag onClick={handleTagChange} name="All" isSelected={tag === "All"} />
+        <Tag
+          onClick={handleTagChange}
+          name="Professional"
+          isSelected={tag === "Professional"}
+        />
+        <Tag
+          onClick={handleTagChange}
+          name="Organizational"
+          isSelected={tag === "Organizational"}
+        />
       </div>
-    </motion.div>
+      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
+        {filteredExperiences.map((experience, index) => (
+          <motion.li
+            key={index}
+            variants={cardVariants}
+            initial="initial"
+            animate={isInView ? "animate" : "initial"}
+            transition={{ duration: 0.3, delay: index * 0.4 }}
+          >
+            <Card
+              key={experience.id}
+              title={experience.title}
+              positions={
+                experience.positions || [
+                  {
+                    description: experience.description,
+                    time: experience.time,
+                  },
+                ]
+              }
+              imgUrl={experience.image}
+              gitUrl={experience.gitUrl}
+              previewUrl={experience.previewUrl}
+            />
+          </motion.li>
+        ))}
+      </ul>
+    </section>
   );
 };
 

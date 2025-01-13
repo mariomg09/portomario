@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-blue-400 text-primary hover:bg-blue-400-hover",
         primary: 'bg-primary text-white',
-        outline: "border border-accent bg-transparent text-blue-400 hover:bg-blue-400 hvver:text-primary",
+        outline: "border border-accent bg-transparent text-blue-400 hover:bg-blue-400 hover:text-primary",
       },
       size: {
         default: "h-[44px] px-6",
