@@ -71,7 +71,7 @@ const About = () => {
           alt="Mario M G"
         />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <h2 className="text-4xl font-bold mt-6 mb-6 text-blue-400">About Me</h2>
+          <h2 className="text-4xl font-bold mt-6 mb-6 text-blue-400">  <span className="text-blue-400">About</span> <span className="text-white">Me</span></h2>
           <p className="text-base md:text-lg">
             a Computer Engineering student passionate about combining software
             and hardware. With hands-on experience in programming, IoT,

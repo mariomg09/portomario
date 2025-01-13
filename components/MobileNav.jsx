@@ -1,19 +1,13 @@
 "use client";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-} from "@/components/ui/sheet";
-import { usePathname } from "next/navigation";
+import React, { useState } from "react";
 import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
+import { IoMdClose } from "react-icons/io";
 
 const links = [
   {
     name: "home",
-    path: "/",
+    path: "#home",
   },
   {
     name: "about",
@@ -21,57 +15,82 @@ const links = [
   },
   {
     name: "experience",
-    path: "/experience",
+    path: "#experience",
   },
   {
     name: "project",
-    path: "/project",
+    path: "#project",
   },
   {
     name: "contact",
-    path: "/contact",
+    path: "#contact",
   },
 ];
 
-const MobileNav = () => {
-  const pathname = usePathname();
+const MobileNav = ({ activeSection, setActiveSection }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => setIsOpen(!isOpen);
+  const handleLinkClick = (event) => {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute("href").substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const offset = targetElement.dataset.offset ? 100 : 0; // Adjust offset value as needed
+      window.scrollTo({
+        top: targetElement.offsetTop - offset,
+        behavior: "smooth",
+      });
+      if (setActiveSection) {
+        setActiveSection(`#${targetId}`);
+      }
+      setIsOpen(false);
+    }
+  };
+
+  const handleOutsideClick = (event) => {
+    if (!event.target.closest(".mobile-nav-content") && isOpen) {
+      setIsOpen(false);
+    }
+  };
+
   return (
-    <Sheet>
-      <SheetTrigger className="flex justify-center items-center">
-        <CiMenuFries className="text-[32px] text-blue-400" />
-      </SheetTrigger>
-      <SheetContent className="flex flex-col">
-        {/* Logo */}
-        <div className="mt-32 mb-40 text-center text-2xl">
-          <Link href="/">
-            <h1 className="text-4xl font-semibold">
-              Mario<span className="text-blue-400"></span>
-            </h1>
-          </Link>
+    <div className="relative">
+      <button
+        className="flex justify-center items-center z-50 text-2xl"
+        onClick={handleToggle}
+      >
+        {isOpen ? (
+          <IoMdClose className="text-blue-400" />
+        ) : (
+          <CiMenuFries className="text-blue-400" />
+        )}
+      </button>
+      {isOpen && (
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40"
+          onClick={handleOutsideClick}
+        >
+          <div className="absolute top-0 left-0 w-full h-[30%] bg-primary z-50 flex flex-col items-center justify-center mobile-nav-content">
+            <nav className="flex flex-col items-center gap-4 mt-4">
+              {links.map((link, index) => (
+                <Link
+                  href={link.path}
+                  key={index}
+                  className={`${
+                    activeSection === link.path ? "text-blue-400" : ""
+                  } text-xl capitalize hover:text-blue-400 transition-all`}
+                  onClick={handleLinkClick}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
-
-        {/* Title for accessibility */}
-        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-
-        <nav className="flex flex-col justify-center items-center gap-8">
-          {links.map((link, index) => {
-            return (
-              <Link
-                href={link.path}
-                key={index}
-                className={`${
-                  link.path === pathname &&
-                  "text-blue-400 border-b-2 border-blue-400"
-                }
-          text-xl capitalize hover:text-blue-400 transition-all`}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
-        </nav>
-      </SheetContent>
-    </Sheet>
+      )}
+    </div>
   );
 };
 

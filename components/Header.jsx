@@ -9,7 +9,6 @@ import Navbar from "./Navbar";
 import MobileNav from "./MobileNav";
 import { useRouter } from "next/navigation";
 
-
 const Header = () => {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState("#home"); // Default to "#home"
@@ -17,7 +16,10 @@ const Header = () => {
   const handleLogoClick = (e) => {
     e.preventDefault();
     setActiveSection("#home");
-    document.getElementById("home").scrollIntoView({ behavior: "smooth" });
+    const homeElement = document.getElementById("home");
+    if (homeElement) {
+      homeElement.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -32,15 +34,15 @@ const Header = () => {
         {/* Navbar */}
         <div className="hidden xl:flex items-center gap-8">
           <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
-          <Link href="/CV">
+          {/*<Link href="/CV">
             <Button className="text-primary border-2 border-blue-400 hover:bg-blue-400 hover:text-white">
               Hire Me
             </Button>
-          </Link>
+          </Link>*/}
         </div>
         {/* Navbar Mobile */}
         <div className="xl:hidden flex items-center gap-4">
-          <MobileNav />
+          <MobileNav activeSection={activeSection} setActiveSection={setActiveSection} />
         </div>
       </div>
     </header>

@@ -11,7 +11,7 @@ import Contact from "./contact/page";
 const Home = () => {
   return (
     <>
-      <section id="home" data-offset="true" className="h-full py-16" >
+      <section id="home" data-offset="true" className="h-full py-16">
         <div className="container mx-auto">
           <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
             {/*teks*/}
@@ -27,11 +27,12 @@ const Home = () => {
                 project. Formerly the President of IME FTUI 2024, I’ve honed
                 leadership and teamwork skills that drive impactful results.
               </p>
-              {/*CV*/}
+              {/* CV */}
               <div className="flex flex-col xl:flex-row items-center gap-8">
                 <Button
-                  href="/CV-MarioMG.pdf" // Path menuju file CV
-                  download="MarioMG_CV.pdf"
+                  href="https://drive.google.com/drive/folders/1SSFzLD6a2Lkk8UUebvIQuqcnr12gGaHs?usp=sharing" // Ganti dengan URL file CV
+                  target="_blank"
+                  rel="noopener noreferrer"
                   variant="outline"
                   size="xl"
                   className="uppercase flex items-center gap-3 px-6 py-5 w-auto border-blue-400 hover:bg-blue-400 hover:text-white border-2"
@@ -39,6 +40,7 @@ const Home = () => {
                   <span> Download CV</span>
                   <FiDownload className="text-xl" />
                 </Button>
+
                 <div className="mb- xl:mb-0">
                   <Social
                     containerStyles="flex gap-6"
