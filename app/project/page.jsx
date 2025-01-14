@@ -63,7 +63,7 @@ const Project = () => {
     setProject(projects[currentIndex]);
   };
   return (
-    <h2 className="h2 mt-10 mb-7">
+    <h2 className="h2 mt-10">
       <span className="text-blue-400">My</span>{" "}
       <span className="text-white">Projects</span>
       <motion.div
@@ -120,7 +120,7 @@ const Project = () => {
               <Swiper
                 spaceBetween={30}
                 slidesPerView={1}
-                className="xl:h-[520px] mb-12"
+                className="xl:h-[520px] mb-2"
                 onSlideChange={handleSlideChange}
               >
                 {projects.map((project, index) => {

@@ -78,13 +78,22 @@ const Home = () => {
         </div>
       </section>
       {/*Project*/}
-      <section id="project" className="h-full py-16">
+      <section
+        id="project"
+        className="h-full py-16"
+        style={{
+          backgroundImage: "url('/About/aboutbg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
         <div className="container mx-auto">
           <Project />
         </div>
       </section>
       {/*Contact Me*/}
-      <section id="contact" className="h-full py-16">
+      <section id="contact" className="h-full py-16 mt-4">
         <div className="container mx-auto">
           <Contact />
         </div>

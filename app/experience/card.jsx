@@ -6,7 +6,7 @@ const Card = ({ imgUrl, title, positions, gitUrl, previewUrl }) => {
   return (
     <div>
       <div
-        className="h-52 md:h-72 relative group"
+        className="relative group aspect-[6/4] bg-cover bg-center"
         style={{
           background: `url(${imgUrl})`,
           backgroundSize: "cover",

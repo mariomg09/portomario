@@ -115,8 +115,8 @@ const Experience = () => {
 
   return (
     <section id="experiences">
-      <h2 className="text-center text-4xl font-bold text-blue-400 mt-4 mb-8 md:mb-12">
-      <span className="text-blue-400">My</span> <span className="text-white">Experiences</span>
+      <h2 className="text-center text-4xl font-bold text-blue-400 mt-4 mb-4">
+        <span className="text-blue-400">My</span> <span className="text-white">Experiences</span>
       </h2>
       <div className="text-blue-400 flex flex-col md:flex-row justify-center items-center gap-2 py-6">
         <Tag onClick={handleTagChange} name="All" isSelected={tag === "All"} />
@@ -131,17 +131,16 @@ const Experience = () => {
           isSelected={tag === "Organizational"}
         />
       </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
+      <ul key={tag} ref={ref} className="grid md:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-8">
         {filteredExperiences.map((experience, index) => (
           <motion.li
-            key={index}
+            key={experience.id}
             variants={cardVariants}
             initial="initial"
             animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
+            transition={{ duration: 0.3, delay: index * 0.2 }}
           >
             <Card
-              key={experience.id}
               title={experience.title}
               positions={
                 experience.positions || [
