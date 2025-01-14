@@ -1,5 +1,12 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
+import dynamic from "next/dynamic";
+
+// Dynamically import the TypeAnimation to ensure it only runs on the client side
+const TypeAnimation = dynamic(() => import('react-type-animation').then(mod => mod.TypeAnimation), { ssr: false });
 
 //components
 import Social from "@/components/Social";
@@ -8,20 +15,43 @@ import About from "./about/page";
 import Experience from "./experience/page";
 import Project from "./project/page";
 import Contact from "./contact/page";
+
 const Home = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <>
       <section id="home" data-offset="true" className="h-full py-16">
         <div className="container mx-auto">
           <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
-            {/*teks*/}
+            {/* text */}
             <div className="text-center xl:text-left order-2 xl:order-none">
               <h1 className="h1 mb-7">
                 Hi, I'm <br />
-                <span className="text-blue-400">Mario M G</span>
+                <span className="text-blue-400">Mario M G
+                  {/*{isClient && (
+                    <TypeAnimation
+                      sequence={[
+                        "Mario M G",
+                        3000,
+                        "Ex-President IME FTUI 2024",
+                        2000,
+                        "Full Stack Developer",
+                        2000,
+                      ]}
+                      wrapper="span"
+                      speed={20}
+                      //repeat={Infinity}
+                    />
+                  )}  */}
+                </span>
               </h1>
               <p className="max-w-[600px] mb-9 text-white/80">
-                a Computer Engineering student passionate about combining
+                A Computer Engineering student passionate about
                 software and hardware. With hands-on experience in programming,
                 IoT, networking, and databases, I bring innovation to every
                 project. Formerly the President of IME FTUI 2024, I’ve honed
@@ -30,7 +60,7 @@ const Home = () => {
               {/* CV */}
               <div className="flex flex-col xl:flex-row items-center gap-8">
                 <Button
-                  href="https://drive.google.com/drive/folders/1SSFzLD6a2Lkk8UUebvIQuqcnr12gGaHs?usp=sharing" // Ganti dengan URL file CV
+                  href="https://drive.google.com/drive/folders/1SSFzLD6a2Lkk8UUebvIQuqcnr12gGaHs?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="outline"
@@ -56,7 +86,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/*About*/}
+      {/* About */}
       <section
         id="about"
         className="h-full py-16"
@@ -71,13 +101,13 @@ const Home = () => {
           <About />
         </div>
       </section>
-      {/*Experience*/}
+      {/* Experience */}
       <section id="experience" className="h-full py-16">
         <div className="container mx-auto">
           <Experience />
         </div>
       </section>
-      {/*Project*/}
+      {/* Project */}
       <section
         id="project"
         className="h-full py-16"
@@ -92,7 +122,7 @@ const Home = () => {
           <Project />
         </div>
       </section>
-      {/*Contact Me*/}
+      {/* Contact Me */}
       <section id="contact" className="h-full py-16 mt-4">
         <div className="container mx-auto">
           <Contact />

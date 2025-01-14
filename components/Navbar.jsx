@@ -26,7 +26,7 @@ const links = [
   },
 ];
 
-const Navbar = ({ setActiveSection }) => {
+const Navbar = () => {
   const [activeSection, setActiveSectionState] = useState("#home"); // Default to "#home"
 
   useEffect(() => {
@@ -40,8 +40,13 @@ const Navbar = ({ setActiveSection }) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 0 && rect.bottom >= 0) {
-            setActiveSection(`#${section}`);
+          const offsetTop = rect.top + window.scrollY;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (
+            scrollPosition >= offsetTop - 1 &&
+            scrollPosition < offsetBottom - 1
+          ) {
             setActiveSectionState(`#${section}`);
           }
         }
@@ -58,34 +63,20 @@ const Navbar = ({ setActiveSection }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const handleLinkClick = (event) => {
-      event.preventDefault();
-      const targetId = event.currentTarget.getAttribute("href").substring(1);
-      const targetElement = document.getElementById(targetId);
+  const handleLinkClick = (event) => {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute("href").substring(1);
+    const targetElement = document.getElementById(targetId);
 
-      if (targetElement) {
-        const offset = targetElement.dataset.offset ? 100 : 0; // Adjust offset value as needed
-        window.scrollTo({
-          top: targetElement.offsetTop - offset,
-          behavior: "smooth",
-        });
-        setActiveSection(`#${targetId}`);
-        setActiveSectionState(`#${targetId}`);
-      }
-    };
-
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach((link) => {
-      link.addEventListener("click", handleLinkClick);
-    });
-
-    return () => {
-      links.forEach((link) => {
-        link.removeEventListener("click", handleLinkClick);
+    if (targetElement) {
+      const offset = targetElement.dataset.offset ? 100 : 0; // Adjust offset value as needed
+      window.scrollTo({
+        top: targetElement.offsetTop - offset,
+        behavior: "smooth",
       });
-    };
-  }, [setActiveSection]);
+      setActiveSectionState(`#${targetId}`);
+    }
+  };
 
   return (
     <nav className="flex gap-8 sticky">
@@ -99,6 +90,7 @@ const Navbar = ({ setActiveSection }) => {
                 ? "text-blue-400 border-b-2 border-blue-400"
                 : ""
             } capitalize font-medium hover:text-blue-400 transition-all`}
+            onClick={handleLinkClick}
           >
             {link.name}
           </Link>

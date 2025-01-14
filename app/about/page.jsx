@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useTransition, useState } from "react";
+import { motion } from "framer-motion";
 import TabButton from "./TabButton";
 
 const TAB_DATA = [
@@ -64,47 +65,65 @@ const About = () => {
   return (
     <section className="text-white">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-        <Image className="w-full h-auto xl:w-[450px] xl:h-[600px]"
+        <Image
+          className="w-full h-auto xl:w-[450px] xl:h-[600px]"
           src="/Home/marioime.jpg"
           width={300}
           height={400}
           alt="Mario M G"
         />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <h2 className="text-4xl font-bold mt-6 mb-6 text-blue-400">  <span className="text-blue-400">About</span> <span className="text-white">Me</span></h2>
+          <h2 className="text-4xl font-bold mt-6 mb-6 text-blue-400">
+            <span className="text-blue-400">About</span>{" "}
+            <span className="text-white">Me</span>
+          </h2>
           <p className="text-base md:text-lg">
-            a Computer Engineering student passionate about combining software
-            and hardware. With hands-on experience in programming, IoT,
-            networking, and databases, I bring innovation to every project.
-            Formerly the President of IME FTUI 2024, I’ve honed leadership and
-            teamwork skills that drive impactful results.
+            I was born on March 10, 2004 and I am a Computer Engineering student
+            at the University of Indonesia. Last year, I served as the Chairman
+            of IME FTUI 2024 and have strong leadership, public speaking, and
+            communication skills. Passionate about tech, I've worked on various
+            software and hardware projects, which you can explore on this
+            website.
           </p>
-          <div className="flex flex-row justify-start mt-8">
+          <div className="flex flex-row justify-start mt-8 gap-3">
             <TabButton
               selectTab={() => handleTabChange("education")}
               active={tab === "education"}
             >
-              {" "}
-              Education{" "}
+              Education
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("certifications")}
               active={tab === "certifications"}
             >
-              {" "}
-              Certifications{" "}
+              Certifications
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("skills")}
               active={tab === "skills"}
             >
-              {" "}
-              Skills{" "}
+              Skills
             </TabButton>
           </div>
-          <div className="mt-8 max-w-[600px]">
-            {TAB_DATA.find((item) => item.id === tab).content}
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: { delay: 0.5, duration: 0.7, ease: "easeIn" },
+            }}
+          >
+            <motion.div
+              key={tab}
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.5, ease: "easeIn" },
+              }}
+              className="mt-4 max-w-[600px]"
+            >
+              {TAB_DATA.find((item) => item.id === tab).content}
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
