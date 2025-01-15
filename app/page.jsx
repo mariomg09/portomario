@@ -6,7 +6,10 @@ import { FiDownload } from "react-icons/fi";
 import dynamic from "next/dynamic";
 
 // Dynamically import the TypeAnimation to ensure it only runs on the client side
-const TypeAnimation = dynamic(() => import('react-type-animation').then(mod => mod.TypeAnimation), { ssr: false });
+const TypeAnimation = dynamic(
+  () => import("react-type-animation").then((mod) => mod.TypeAnimation),
+  { ssr: false }
+);
 
 //components
 import Social from "@/components/Social";
@@ -32,7 +35,8 @@ const Home = () => {
             <div className="text-center xl:text-left order-2 xl:order-none">
               <h1 className="h1 mb-7">
                 Hi, I'm <br />
-                <span className="text-blue-400">Mario M G
+                <span className="text-blue-400">
+                  Mario M G
                   {/*{isClient && (
                     <TypeAnimation
                       sequence={[
@@ -51,11 +55,11 @@ const Home = () => {
                 </span>
               </h1>
               <p className="max-w-[600px] mb-9 text-white/80">
-                A Computer Engineering student passionate about
-                software and hardware. With hands-on experience in programming,
-                IoT, networking, and databases, I bring innovation to every
-                project. Formerly the President of IME FTUI 2024, I’ve honed
-                leadership and teamwork skills that drive impactful results.
+                A Computer Engineering student passionate about software and
+                hardware. With hands-on experience in programming, IoT,
+                networking, and databases, I bring innovation to every project.
+                Formerly the President of IME FTUI 2024, I’ve honed leadership
+                and teamwork skills that drive impactful results.
               </p>
               {/* CV */}
               <div className="flex flex-col xl:flex-row items-center gap-8">
@@ -128,6 +132,10 @@ const Home = () => {
           <Contact />
         </div>
       </section>
+      {/* Footer */}
+      <footer className="text-center text-white/60 text-sm mb-7">
+        © Copyright 2025 Mario Matthews Gunawan. All Rights Reserved.
+      </footer>
     </>
   );
 };
