@@ -18,7 +18,15 @@ const Header = () => {
     setActiveSection("#home");
     const homeElement = document.getElementById("home");
     if (homeElement) {
-      homeElement.scrollIntoView({ behavior: "smooth" });
+      const headerOffset = document.querySelector("header").offsetHeight;
+      const elementPosition =
+        homeElement.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   };
 
