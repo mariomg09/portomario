@@ -1,23 +1,17 @@
 {
-    "build": {
-      "env": {
-        "DATABASE_URL": "mysql://root:mariomg@localhost:3306/Experience"
+  "builds": [
+    {
+      "src": "app/**/*",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["prisma/**/*"]
       }
-    },
-    "builds": [
-      {
-        "src": "app/**/*",
-        "use": "@vercel/node",
-        "config": {
-          "includeFiles": ["prisma/**/*"]
-        }
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/.*",
-        "dest": "/api/index.js"
-      }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "/api/index.js"
+    }
+  ]
+}
