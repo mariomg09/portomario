@@ -33,7 +33,10 @@ const Header = () => {
         </Link>
         {/* Navbar */}
         <div className="hidden xl:flex items-center gap-8">
-          <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
+          <Navbar
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+          />
           {/*<Link href="/CV">
             <Button className="text-primary border-2 border-blue-400 hover:bg-blue-400 hover:text-white">
               Hire Me
@@ -42,7 +45,10 @@ const Header = () => {
         </div>
         {/* Navbar Mobile */}
         <div className="xl:hidden flex items-center gap-4">
-          <MobileNav activeSection={activeSection} setActiveSection={setActiveSection} />
+          <MobileNav
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+          />
         </div>
       </div>
     </header>
