@@ -58,5 +58,19 @@
     background-color: transparent; /* Ubah warna navbar sesuai yang diinginkan */
     box-shadow: none; /* Hilangkan bayangan jika tidak diperlukan */
   }
+/* Autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #1C1C22 inset !important; /* Match your input field background color */
+  box-shadow: 0 0 0px 1000px #1C1C22 inset !important; /* Match your input field background color */
+  -webkit-text-fill-color: #ffffff !important; /* Ensure text color is correct */
+  
 
-}
+
+}}

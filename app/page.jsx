@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { FiDownload } from "react-icons/fi";
 import dynamic from "next/dynamic";
+import Download from "@/components/Download";
 
 // Dynamically import the TypeAnimation to ensure it only runs on the client side
 const TypeAnimation = dynamic(
@@ -63,18 +62,11 @@ const Home = () => {
               </p>
               {/* CV */}
               <div className="flex flex-col xl:flex-row items-center gap-8">
-                <Button
-                  href="https://drive.google.com/drive/folders/1SSFzLD6a2Lkk8UUebvIQuqcnr12gGaHs?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="outline"
-                  size="xl"
-                  className="uppercase flex items-center gap-3 px-6 py-5 w-auto border-blue-400 hover:bg-blue-400 hover:text-white border-2"
-                >
-                  <span> Download CV</span>
-                  <FiDownload className="text-xl" />
-                </Button>
-
+                <Download
+                  containerStyles="flex flex-col xl:flex-row items-center gap-8  text-semibold"
+                  buttonStyles="uppercase flex items-center gap-3 px-6 py-4 w-auto border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-primary rounded-full font-semibold"
+                  iconStyles="text-xl"
+                />
                 <div className="mb- xl:mb-0">
                   <Social
                     containerStyles="flex gap-6"
