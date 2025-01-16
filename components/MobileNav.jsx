@@ -72,7 +72,7 @@ const MobileNav = ({ activeSection, setActiveSection }) => {
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40"
           onClick={handleOutsideClick}
         >
-          <div className="absolute top-0 left-0 w-full h-[34%] bg-primary z-50 flex flex-col items-center justify-center mobile-nav-content">
+          <div className="absolute top-0 left-0 w-full h-[30%] bg-primary z-50 flex flex-col items-center justify-center mobile-nav-content">
             <nav className="flex flex-col items-center gap-4 mt-4">
               {links.map((link, index) => (
                 <Link
