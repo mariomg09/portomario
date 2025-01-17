@@ -64,7 +64,7 @@ const Home = () => {
               <div className="flex flex-col xl:flex-row items-center gap-8">
                 <Download
                   containerStyles="flex flex-col xl:flex-row items-center gap-8  text-semibold"
-                  buttonStyles="uppercase flex items-center gap-3 px-6 py-4 w-auto border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-primary rounded-full font-semibold"
+                  buttonStyles="uppercase flex items-center gap-3 px-6 py-4 w-auto border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-primary rounded-full font-semibold hover:transition-all duration-500"
                   iconStyles="text-xl"
                 />
                 <div className="mb- xl:mb-0">
