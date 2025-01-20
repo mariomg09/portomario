@@ -156,7 +156,7 @@ const Project = () => {
                 {/*slider buttons*/}
                 <WorkSliderBtns
                   containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_20px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
-                  btnStyles="bg-blue-400 hover:bg-blue-400-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all opacity-80 rounded-full"
+                  btnStyles="bg-blue-400 hover:bg-blue-400 hover:opacity-70 hover:duration-2000 text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all opacity-80 rounded-full"
                 />
               </Swiper>
             </div>

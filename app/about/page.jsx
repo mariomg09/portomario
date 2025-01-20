@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useTransition, useState } from "react";
 import { motion } from "framer-motion";
 import TabButton from "./TabButton";
+import { AnimatePresence } from "framer-motion";
 
 const TAB_DATA = [
   {
